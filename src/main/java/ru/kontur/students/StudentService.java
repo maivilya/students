@@ -28,6 +28,14 @@ public class StudentService {
     }
 
     /**
+     * Метод возвращает список всех студентов
+     * @return копия списка студентовц
+     */
+    public List<Student> getStudents() {
+        return List.copyOf(students);
+    }
+
+    /**
      * Первоначальная инициализация списка студентов
      */
     private void initialization() {
