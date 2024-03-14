@@ -11,5 +11,20 @@ public class StudentService {
 
     public StudentService() {
         students = new ArrayList<>();
+        initialization();
+    }
+
+
+    /**
+     * Первоначальная инициализация списка студентов
+     */
+    private void initialization() {
+        students.add(new Student("Илья", "A1"));
+        students.add(new Student("Нияз", "A1"));
+        students.add(new Student("Евгений", "B2"));
+        students.add(new Student("Алексей", "A1"));
+        students.add(new Student("Кристина", "C1"));
+        students.add(new Student("Максим", "C1"));
+        students.add(new Student("Артем", "A1"));
     }
 }
