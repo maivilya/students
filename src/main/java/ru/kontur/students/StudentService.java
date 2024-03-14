@@ -69,7 +69,7 @@ public class StudentService {
         students.add(new Student("Кристина", "C1"));
         students.add(new Student("Максим", "C1"));
         students.add(new Student("Артем", "A1"));
-        students.add(new Student("Илья", "С3"));
-        students.add(new Student("Евгений", "С3"));
+        students.add(new Student("Илья", "C3"));
+        students.add(new Student("Евгений", "C3"));
     }
 }
