@@ -34,11 +34,10 @@ public class StudentService {
      * @return Если студент с таким именем существует, то вернется объект студента,
      * иначе вернется null
      */
-    public Student getStudent(String studentName) {
+    public List<Student> getStudentsByName(String studentName) {
         return students.stream()
                 .filter(s -> s.getName().equalsIgnoreCase(studentName))
-                .findFirst()
-                .orElse(null);
+                .collect(Collectors.toList());
     }
 
     /**
@@ -71,5 +70,7 @@ public class StudentService {
         students.add(new Student("Кристина", "C1"));
         students.add(new Student("Максим", "C1"));
         students.add(new Student("Артем", "A1"));
+        students.add(new Student("Илья", "С3"));
+        students.add(new Student("Евгений", "С3"));
     }
 }
