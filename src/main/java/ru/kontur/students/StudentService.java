@@ -14,6 +14,18 @@ public class StudentService {
         initialization();
     }
 
+    /**
+     * Получение студента по уникальному идентификатору
+     * @param id идентификатор
+     * @return если студент с таким id существует, то вернется объект студента,
+     * иначе вернется null
+     */
+    public Student getStudent(int id) {
+        return students.stream()
+                .filter(s -> s.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
 
     /**
      * Первоначальная инициализация списка студентов
