@@ -16,8 +16,8 @@ public class StudentService {
 
     /**
      * Получение студента по уникальному идентификатору
-     * @param id идентификатор
-     * @return если студент с таким id существует, то вернется объект студента,
+     * @param id Идентификатор студента
+     * @return Если студент с таким id существует, то вернется объект студента,
      * иначе вернется null
      */
     public Student getStudent(int id) {
@@ -28,8 +28,21 @@ public class StudentService {
     }
 
     /**
+     * Получение студента по его имени
+     * @param studentName Имя студента
+     * @return Если студент с таким именем существует, то вернется объект студента,
+     * иначе вернется null
+     */
+    public Student getStudent(String studentName) {
+        return students.stream()
+                .filter(s -> s.getName().equalsIgnoreCase(studentName))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
      * Метод возвращает список всех студентов
-     * @return копия списка студентовц
+     * @return Копия списка студентовц
      */
     public List<Student> getStudents() {
         return List.copyOf(students);
