@@ -3,6 +3,7 @@ package ru.kontur.students;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
@@ -46,6 +47,17 @@ public class StudentService {
      */
     public List<Student> getStudents() {
         return List.copyOf(students);
+    }
+
+    /**
+     * Метод возвращает список студентов из определенной группы
+     * @param groupName Название группы, по которой будут искаться студенты
+     * @return Все студенты из заданной группы
+     */
+    public List<Student> getStudents(String groupName) {
+        return students.stream()
+                .filter(s -> s.getGroupName().equalsIgnoreCase(groupName))
+                .collect(Collectors.toList());
     }
 
     /**
