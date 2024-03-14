@@ -27,7 +27,12 @@ public class StudentController {
     }
 
     @GetMapping("/student/search")
-    public List<Student> getStudents(@RequestParam String studentName) {
+    public List<Student> getStudentsByName(@RequestParam String studentName) {
         return studentService.getStudentsByName(studentName);
+    }
+
+    @GetMapping("/group/{groupName}/student")
+    public List<Student> getStudentsByGroup(@PathVariable String groupName) {
+        return studentService.getStudents(groupName);
     }
 }
