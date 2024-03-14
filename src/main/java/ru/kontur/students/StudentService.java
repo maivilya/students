@@ -29,10 +29,9 @@ public class StudentService {
     }
 
     /**
-     * Получение студента по его имени
+     * Получение списка студентов по имени
      * @param studentName Имя студента
-     * @return Если студент с таким именем существует, то вернется объект студента,
-     * иначе вернется null
+     * @return Если студенты с таким именем существует, то вернется список этих студентов
      */
     public List<Student> getStudentsByName(String studentName) {
         return students.stream()
