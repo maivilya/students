@@ -31,8 +31,19 @@ public class StudentRepository {
     }
 
     /**
+     * Метод возвращает список студентов по имени
+     * @param studentName Имя студента
+     * @return Список студентов с заданным именем
+     */
+    public List<Student> getStudentsByName(String studentName) {
+        return students.stream()
+                .filter(s -> s.getName().equalsIgnoreCase(studentName))
+                .collect(Collectors.toList());
+    }
+
+    /**
      * Метод возвращает список всех студентов
-     * @return Копия списка студентовц
+     * @return Копия списка студентов
      */
     public List<Student> getAllStudents() {
         return List.copyOf(students);
