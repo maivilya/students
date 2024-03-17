@@ -18,6 +18,19 @@ public class StudentRepository {
     }
 
     /**
+     * Метод возвращает студента по уникальному идентификатору
+     * @param id Идентификатор студента
+     * @return Если студент с таким id существует, то вернется объект студента,
+     * иначе вернется null
+     */
+    public Student getStudentById(int id) {
+        return students.stream()
+                .filter(s -> s.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
      * Метод возвращает список всех студентов
      * @return Копия списка студентовц
      */
