@@ -1,4 +1,4 @@
-package ru.kontur.students;
+package ru.kontur.students.Entity;
 
 import lombok.Data;
 
