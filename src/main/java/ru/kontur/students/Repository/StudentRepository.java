@@ -19,6 +19,7 @@ public class StudentRepository {
 
     /**
      * Метод возвращает студента по уникальному идентификатору
+     *
      * @param id Идентификатор студента
      * @return Если студент с таким id существует, то вернется объект студента,
      * иначе вернется null
@@ -32,17 +33,23 @@ public class StudentRepository {
 
     /**
      * Метод возвращает список студентов по имени
+     *
      * @param studentName Имя студента
      * @return Список студентов с заданным именем
      */
     public List<Student> getStudentsByName(String studentName) {
-        return students.stream()
+        List<Student> tempStudents = students.stream()
                 .filter(s -> s.getName().equalsIgnoreCase(studentName))
-                .collect(Collectors.toList());
+                .toList();
+        if (tempStudents.size() == 0) {
+            return null;
+        }
+        return tempStudents;
     }
 
     /**
      * Метод возвращает список всех студентов
+     *
      * @return Копия списка студентов
      */
     public List<Student> getAllStudents() {
@@ -51,13 +58,18 @@ public class StudentRepository {
 
     /**
      * Метод возвращает список студентов из определенной группы
+     *
      * @param groupName Название группы, по которой будут искаться студенты
      * @return Все студенты из заданной группы
      */
     public List<Student> getStudentsByGroup(String groupName) {
-        return students.stream()
+        List<Student> tempStudents = students.stream()
                 .filter(s -> s.getGroupName().equalsIgnoreCase(groupName))
-                .collect(Collectors.toList());
+                .toList();
+        if (tempStudents.size() == 0) {
+            return null;
+        }
+        return tempStudents;
     }
 
     /**
