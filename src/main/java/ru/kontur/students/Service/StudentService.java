@@ -1,77 +1,47 @@
 package ru.kontur.students.Service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.kontur.students.Entity.Student;
-
+import ru.kontur.students.Repository.StudentRepository;
 import java.util.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.NoSuchElementException;
 
 @Service
+@Slf4j
 public class StudentService {
 
-    private final List<Student> students;
+    private final StudentRepository studentRepository;
 
     public StudentService() {
-        students = new ArrayList<>();
-        initialization();
+        studentRepository = new StudentRepository();
     }
 
-    /**
-     * Получение студента по уникальному идентификатору
-     * @param id Идентификатор студента
-     * @return Если студент с таким id существует, то вернется объект студента,
-     * иначе вернется null
-     */
-    public Student getStudent(int id) {
-        return students.stream()
-                .filter(s -> s.getId() == id)
-                .findFirst()
-                .orElse(null);
+    public Student getStudentById(int id) {
+        if (studentRepository.getStudentById(id) == null) {
+            log.info("Не удалось найти студента с id={}", id);
+            throw new NoSuchElementException("Не удалось найти студента с id=" + id);
+        }
+        return studentRepository.getStudentById(id);
     }
 
-    /**
-     * Получение списка студентов по имени
-     * @param studentName Имя студента
-     * @return Если студенты с таким именем существует, то вернется список этих студентов
-     */
     public List<Student> getStudentsByName(String studentName) {
-        return students.stream()
-                .filter(s -> s.getName().equalsIgnoreCase(studentName))
-                .collect(Collectors.toList());
+        if (studentRepository.getStudentsByName(studentName) == null) {
+            log.info("Не удалось найти студентов с именем={}", studentName);
+            throw new NoSuchElementException("Не удалось найти студентов с именем=" + studentName);
+        }
+        return studentRepository.getStudentsByName(studentName);
     }
 
-    /**
-     * Метод возвращает список всех студентов
-     * @return Копия списка студентовц
-     */
-    public List<Student> getStudents() {
-        return List.copyOf(students);
+    public List<Student> getAllStudents() {
+        return studentRepository.getAllStudents();
     }
 
-    /**
-     * Метод возвращает список студентов из определенной группы
-     * @param groupName Название группы, по которой будут искаться студенты
-     * @return Все студенты из заданной группы
-     */
-    public List<Student> getStudents(String groupName) {
-        return students.stream()
-                .filter(s -> s.getGroupName().equalsIgnoreCase(groupName))
-                .collect(Collectors.toList());
-    }
-
-    /**
-     * Первоначальная инициализация списка студентов
-     */
-    private void initialization() {
-        students.add(new Student("Илья", "A1"));
-        students.add(new Student("Нияз", "A1"));
-        students.add(new Student("Евгений", "B2"));
-        students.add(new Student("Алексей", "A1"));
-        students.add(new Student("Кристина", "C1"));
-        students.add(new Student("Максим", "C1"));
-        students.add(new Student("Артем", "A1"));
-        students.add(new Student("Илья", "C3"));
-        students.add(new Student("Евгений", "C3"));
+    public List<Student> getStudentsByGroup(String groupName) {
+        if (studentRepository.getStudentsByGroup(groupName) == null) {
+            log.info("Не удалось найти ни одного студента из группы{}", groupName);
+            throw new NoSuchElementException("Не удалось найти ни одного студента из группы=" + groupName);
+        }
+        return studentRepository.getStudentsByGroup(groupName);
     }
 }
