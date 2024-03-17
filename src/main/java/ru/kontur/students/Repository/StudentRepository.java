@@ -16,6 +16,17 @@ public class StudentRepository {
         initialization();
     }
 
+    /**
+     * Метод возвращает список всех студентов
+     * @return Копия списка студентовц
+     */
+    public List<Student> getAllStudents() {
+        return List.copyOf(students);
+    }
+
+    /**
+     * Первоначальная инициализация списка студентов
+     */
     private void initialization() {
         students.add(new Student("Илья", "A1"));
         students.add(new Student("Нияз", "A1"));
