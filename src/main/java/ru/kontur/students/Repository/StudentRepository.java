@@ -5,6 +5,7 @@ import ru.kontur.students.Entity.Student;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class StudentRepository {
@@ -22,6 +23,17 @@ public class StudentRepository {
      */
     public List<Student> getAllStudents() {
         return List.copyOf(students);
+    }
+
+    /**
+     * Метод возвращает список студентов из определенной группы
+     * @param groupName Название группы, по которой будут искаться студенты
+     * @return Все студенты из заданной группы
+     */
+    public List<Student> getStudentsByGroup(String groupName) {
+        return students.stream()
+                .filter(s -> s.getGroupName().equalsIgnoreCase(groupName))
+                .collect(Collectors.toList());
     }
 
     /**
