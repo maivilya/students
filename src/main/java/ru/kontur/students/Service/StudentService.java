@@ -1,6 +1,8 @@
-package ru.kontur.students;
+package ru.kontur.students.Service;
 
 import org.springframework.stereotype.Service;
+import ru.kontur.students.Entity.Student;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
