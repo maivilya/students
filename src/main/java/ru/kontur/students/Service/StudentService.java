@@ -39,7 +39,7 @@ public class StudentService {
 
     public List<Student> getStudentsByGroup(String groupName) {
         if (studentRepository.getStudentsByGroup(groupName) == null) {
-            log.info("Не удалось найти ни одного студента из группы{}", groupName);
+            log.info("Не удалось найти ни одного студента из группы={}", groupName);
             throw new NoSuchElementException("Не удалось найти ни одного студента из группы=" + groupName);
         }
         return studentRepository.getStudentsByGroup(groupName);
