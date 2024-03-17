@@ -18,15 +18,14 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-
     @GetMapping("/student/{id}")
     public Student getStudent(@PathVariable int id) {
-        return studentService.getStudent(id);
+        return studentService.getStudentById(id);
     }
 
     @GetMapping("/student")
     public List<Student> getStudents() {
-        return studentService.getStudents();
+        return studentService.getAllStudents();
     }
 
     @GetMapping("/student/search")
@@ -36,6 +35,6 @@ public class StudentController {
 
     @GetMapping("/group/{groupName}/student")
     public List<Student> getStudentsByGroup(@PathVariable String groupName) {
-        return studentService.getStudents(groupName);
+        return studentService.getStudentsByGroup(groupName);
     }
 }
