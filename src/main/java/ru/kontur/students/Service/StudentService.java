@@ -21,7 +21,7 @@ public class StudentService {
         Student oldStudent = studentRepository.deleteStudentById(id);
         if (oldStudent == null) {
             log.info("Не удалось удалить студента с id={}", id);
-            return null;
+            throw new NullPointerException("Не удалось удалить студента с id=" +  id);
         }
         log.info("Студент с id={} успешно удален", id);
         return oldStudent;
@@ -50,6 +50,7 @@ public class StudentService {
             log.info("Не удалось найти студента с id={}", id);
             throw new NoSuchElementException("Не удалось найти студента с id=" + id);
         }
+        log.info("Информация о студенте с id={} успешно выдана", id);
         return studentRepository.getStudentById(id);
     }
 
@@ -58,10 +59,12 @@ public class StudentService {
             log.info("Не удалось найти студентов с именем={}", studentName);
             throw new NoSuchElementException("Не удалось найти студентов с именем=" + studentName);
         }
+        log.info("Информация о студентах с именем={} успешно выдана", studentName);
         return studentRepository.getStudentsByName(studentName);
     }
 
     public List<Student> getAllStudents() {
+        log.info("Информация о студентах успешно выдана");
         return studentRepository.getAllStudents();
     }
 
@@ -70,6 +73,7 @@ public class StudentService {
             log.info("Не удалось найти ни одного студента из группы={}", groupName);
             throw new NoSuchElementException("Не удалось найти ни одного студента из группы=" + groupName);
         }
+        log.info("Информация о студентах из группы={} успешно выдана", groupName);
         return studentRepository.getStudentsByGroup(groupName);
     }
 }
