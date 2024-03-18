@@ -16,6 +16,19 @@ public class StudentRepository {
     }
 
     /**
+     * Метод удаляет сдуента по идентификатору
+     * @param id Идентификатор студента
+     * @return Удаленного(старого студента) студента
+     */
+    public Student deleteStudentById(int id) {
+        if (id < 0 || id >= students.size())
+        {
+            return null;
+        }
+        return students.remove(id);
+    }
+
+    /**
      * Метод заменяет объект студента по уникальному идентификатору
      * @param id      Идентификатор студента
      * @param student Новый объект студента
