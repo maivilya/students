@@ -17,6 +17,16 @@ public class StudentService {
         studentRepository = new StudentRepository();
     }
 
+    public Student deleteStudentById(int id) {
+        Student oldStudent = studentRepository.deleteStudentById(id);
+        if (oldStudent == null) {
+            log.info("Не удалось удалить студента с id={}", id);
+            return null;
+        }
+        log.info("Студент с id={} успешно удален", id);
+        return oldStudent;
+    }
+
     public Student updateStudent(int id, Student student) {
         if (studentRepository.updateStudent(id, student) == null) {
             log.info("Не удалось обновить данные о студента с id={}, student={}", id, student);
