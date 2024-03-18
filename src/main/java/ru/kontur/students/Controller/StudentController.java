@@ -20,6 +20,18 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student student) {
+        log.info("Поступил запрос на обновление данных о студенте с id={}", id);
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(studentService.updateStudent(id, student));
+        } catch (NullPointerException exception) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/add")
     public ResponseEntity<Boolean> addStudent(@RequestBody Student student) {
         log.info("Поступил запрос на добавление студента={}",student);
