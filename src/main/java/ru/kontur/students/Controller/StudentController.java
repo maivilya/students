@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kontur.students.Entity.Student;
 import ru.kontur.students.Service.StudentService;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -19,6 +18,18 @@ public class StudentController {
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
+    }
+
+    @PostMapping("/add")
+    public ResponseEntity<Boolean> addStudent(@RequestBody Student student) {
+        log.info("Поступил запрос на добавление студента={}",student);
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(studentService.addStudent(student));
+        } catch (NullPointerException exception) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @GetMapping("{id}")
