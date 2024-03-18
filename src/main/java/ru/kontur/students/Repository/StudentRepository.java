@@ -22,11 +22,14 @@ public class StudentRepository {
      * @return        Объект нового студента, которого добавили в репозиторий
      */
     public Student updateStudent(int id, Student student) {
-        if (id < 0 || id >=students.size() || student == null) {
-            return null;
+        Student newStudent = getStudentById(id);
+        if (newStudent != null) {
+            newStudent.setId(student.getId());
+            newStudent.setName(student.getName());
+            newStudent.setGroupName(student.getGroupName());
+            return newStudent;
         }
-        students.add(id, student);
-        return student;
+        return null;
     }
 
     /**

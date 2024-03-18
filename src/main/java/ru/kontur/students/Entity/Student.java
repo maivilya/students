@@ -6,8 +6,8 @@ import lombok.Data;
 public class Student {
 
     private static int currentId;
-    private final int id;
-    private final String name;
+    private int id;
+    private String name;
     private String groupName;
 
     static {

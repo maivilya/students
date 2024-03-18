@@ -22,7 +22,7 @@ public class StudentService {
             log.info("Не удалось обновить данные о студента с id={}, student={}", id, student);
             return null;
         }
-        log.info("Данные о студента c id{} успешно обновлены. Новые данные={}", id, student);
+        log.info("Данные о студента c id={} успешно обновлены. Новые данные={}", id, student);
         return student;
     }
 
