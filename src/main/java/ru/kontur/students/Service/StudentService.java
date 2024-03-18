@@ -17,12 +17,13 @@ public class StudentService {
         studentRepository = new StudentRepository();
     }
 
-    public void addStudent(Student student) {
+    public boolean addStudent(Student student) {
         if (!studentRepository.addStudent(student)) {
             log.info("Не удалось добавить студента={}", student);
             throw new NullPointerException("Не удалось добавить студента=" + student);
         }
         log.info("Студент={} добавлен в репозиторий",student);
+        return true;
     }
 
     public Student getStudentById(int id) {
