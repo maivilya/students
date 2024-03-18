@@ -20,6 +20,18 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Student> deleteStudentById(@PathVariable int id) {
+        log.info("Поступил запрос на удаление студента с id={}", id);
+        try {
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(studentService.deleteStudentById(id));
+        } catch (NoSuchElementException exception) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PutMapping("/update/{id}")
     public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student student) {
         log.info("Поступил запрос на обновление данных о студенте с id={}", id);
@@ -52,7 +64,6 @@ public class StudentController {
                     .status(HttpStatus.CREATED)
                     .body(studentService.getStudentById(id));
         } catch (NoSuchElementException exception) {
-            log.info("Запрос на выдачу информации о студенте с id={} завершился с ошибкой 404", id);
             return ResponseEntity.notFound().build();
         }
     }
@@ -61,9 +72,10 @@ public class StudentController {
     public ResponseEntity<List<Student>> getAllStudents() {
         log.info("Поступил запрос на выдачу информации обо всех студентах");
         try {
-            return ResponseEntity.status(HttpStatus.CREATED).body(studentService.getAllStudents());
-        } catch (NoSuchElementException exception) {
-            log.info("Запрос на выдачу информации обо всех студентах завершился с ошибкой 404");
+            return ResponseEntity
+                    .status(HttpStatus.CREATED)
+                    .body(studentService.getAllStudents());
+        } catch (NullPointerException exception) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -76,8 +88,6 @@ public class StudentController {
                     .status(HttpStatus.CREATED)
                     .body(studentService.getStudentsByName(studentName));
         } catch (NoSuchElementException exception) {
-            log.info("Запрос на выдачу информации обо всех студентах c именем={} завершился с ошибкой 404",
-                    studentName);
             return ResponseEntity.notFound().build();
         }
     }
@@ -90,8 +100,6 @@ public class StudentController {
                     .status(HttpStatus.CREATED)
                     .body(studentService.getStudentsByGroup(groupName));
         } catch (NoSuchElementException exception) {
-            log.info("Запрос на выдачу информации обо всех студентах из группы={} завершился с ошибкой 404",
-                    groupName);
             return ResponseEntity.notFound().build();
         }
     }
