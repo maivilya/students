@@ -2,7 +2,6 @@ package ru.kontur.students.Repository;
 
 import org.springframework.stereotype.Repository;
 import ru.kontur.students.Entity.Student;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +13,20 @@ public class StudentRepository {
     public StudentRepository() {
         this.students = new ArrayList<>();
         initialization();
+    }
+
+    /**
+     * Метод заменяет объект студента по уникальному идентификатору
+     * @param id      Идентификатор студента
+     * @param student Новый объект студента
+     * @return        Объект нового студента, которого добавили в репозиторий
+     */
+    public Student updateStudent(int id, Student student) {
+        if (id < 0 || id >=students.size() || student == null) {
+            return null;
+        }
+        students.add(id, student);
+        return student;
     }
 
     /**
