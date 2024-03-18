@@ -17,6 +17,19 @@ public class StudentRepository {
     }
 
     /**
+     * Метод добавляет студента в репозиторий
+     * @param student Объект студента
+     * @return если студента получилось добавить - true, иначе - false
+     */
+    public boolean addStudent(Student student){
+        if (student != null) {
+            students.add(student);
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Метод возвращает студента по уникальному идентификатору
      *
      * @param id Идентификатор студента
