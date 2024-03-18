@@ -21,7 +21,7 @@ public class StudentService {
         Student oldStudent = studentRepository.deleteStudentById(id);
         if (oldStudent == null) {
             log.info("Не удалось удалить студента с id={}", id);
-            throw new NullPointerException("Не удалось удалить студента с id=" +  id);
+            throw new NoSuchElementException("Не удалось удалить студента с id=" +  id);
         }
         log.info("Студент с id={} успешно удален", id);
         return oldStudent;
