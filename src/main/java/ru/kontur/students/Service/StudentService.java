@@ -17,10 +17,19 @@ public class StudentService {
         studentRepository = new StudentRepository();
     }
 
+    public Student updateStudent(int id, Student student) {
+        if (studentRepository.updateStudent(id, student) == null) {
+            log.info("Не удалось обновить данные о студента с id={}, student={}", id, student);
+            return null;
+        }
+        log.info("Данные о студента c id{} успешно обновлены. Новые данные={}", id, student);
+        return student;
+    }
+
     public boolean addStudent(Student student) {
         if (!studentRepository.addStudent(student)) {
             log.info("Не удалось добавить студента={}", student);
-            throw new NullPointerException("Не удалось добавить студента=" + student);
+            return false;
         }
         log.info("Студент={} добавлен в репозиторий",student);
         return true;
