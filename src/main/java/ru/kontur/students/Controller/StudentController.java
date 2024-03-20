@@ -30,4 +30,10 @@ public class StudentController {
         model.addAttribute("student",studentService.getStudentById(id));
         return "studentProfile";
     }
+
+    @GetMapping("/group/{groupName}")
+    public String group(@PathVariable String groupName, Model model) {
+        model.addAttribute("groupTable", studentService.getStudentsByGroup(groupName));
+        return "groups";
+    }
 }
