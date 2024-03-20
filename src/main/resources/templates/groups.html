@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <title th:text="${student.getGroupName()}"></title>
+    </head>
+
+    <body>
+        <h1 th:text="${student.getGroupName()}"></h1>
+        <table style="border: 3px solid #245488; padding: 10px 20px; text-align: center">
+            <tr style="border: 3px solid #245488; padding: 10px 20px; text-align: center">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Group</th>
+            </tr>
+            <tr th:each="student: ${groupTable}">
+                <td th:text="${student.getId()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
+                <td><a th:href="@{/users/{id}(id=${student.getId()})}" th:text="${student.getName()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></a></td>
+            </tr>
+        </table>
+
+    </body>
+
+</html>
