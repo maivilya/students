@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Cтуденты</title>
+    </head>
+
+    <body>
+        <h1>Cтуденты</h1>
+        <table style="border: 3px solid #245488; padding: 10px 20px; text-align: center">
+            <tr style="border: 3px solid #245488; padding: 10px 20px; text-align: center">
+                <th>ID</th>
+                <th>Name</th>
+                <th>Group</th>
+            </tr>
+            <tr th:each="student: ${studentTable}">
+                <td th:text="${student.getId()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
+                <td th:text="${student.getName()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
+                <td th:text="${student.getGroupName()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
+            </tr>
+        </table>
+    </body>
+</html>
