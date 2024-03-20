@@ -15,7 +15,7 @@
             </tr>
             <tr th:each="student: ${studentTable}">
                 <td th:text="${student.getId()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
-                <td th:text="${student.getName()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
+                <td><a th:href="@{/users/{id}(id=${student.getId()})}" th:text="${student.getName()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></a></td>
                 <td th:text="${student.getGroupName()}" style="border: 3px solid #245488; padding: 10px 20px; text-align: center"></td>
             </tr>
         </table>
