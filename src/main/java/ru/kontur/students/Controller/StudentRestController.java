@@ -13,11 +13,11 @@ import java.util.NoSuchElementException;
 @RestController()
 @RequestMapping("/student")
 @Slf4j
-public class StudentController {
+public class StudentRestController {
 
     private final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentRestController(StudentService studentService) {
         this.studentService = studentService;
     }
 
