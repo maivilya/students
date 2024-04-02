@@ -12,7 +12,7 @@ import ru.kontur.students.Service.StudentService;
 @RequestMapping("/users")
 @Slf4j
 public class StudentController {
-
+/*
     private final StudentService studentService;
 
     public StudentController() {
@@ -35,5 +35,5 @@ public class StudentController {
     public String group(@PathVariable String groupName, Model model) {
         model.addAttribute("groupTable", studentService.getStudentsByGroup(groupName));
         return "groups";
-    }
+    }*/
 }
