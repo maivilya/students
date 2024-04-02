@@ -1,32 +1,19 @@
 package ru.kontur.students.Repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import ru.kontur.students.Entity.Student;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class StudentRepository {
-
-    private final List<Student> students;
-
-    public StudentRepository() {
-        this.students = new ArrayList<>();
-        initialization();
-    }
+public interface StudentRepository extends JpaRepository<Student, Integer> {
 
     /**
      * Метод удаляет сдуента по идентификатору
      * @param id Идентификатор студента
      * @return Удаленного(старого студента) студента
      */
-    public Student deleteStudentById(int id) {
-        if (id < 0 || id >= students.size())
-        {
-            return null;
-        }
-        return students.remove(id);
-    }
+    Student deleteStudentById(int id);
 
     /**
      * Метод заменяет объект студента по уникальному идентификатору
@@ -34,29 +21,14 @@ public class StudentRepository {
      * @param student Новый объект студента
      * @return        Объект нового студента, которого добавили в репозиторий
      */
-    public Student updateStudent(int id, Student student) {
-        Student newStudent = getStudentById(id);
-        if (newStudent != null) {
-            newStudent.setId(student.getId());
-            newStudent.setName(student.getName());
-            newStudent.setGroupName(student.getGroupName());
-            return newStudent;
-        }
-        return null;
-    }
+    Student updateStudentById(int id, Student student);
 
     /**
      * Метод добавляет студента в репозиторий
      * @param student Объект студента
      * @return если студента получилось добавить - true, иначе - false
      */
-    public boolean addStudent(Student student){
-        if (student != null) {
-            students.add(student);
-            return true;
-        }
-        return false;
-    }
+    boolean addStudent(Student student);
 
     /**
      * Метод возвращает студента по уникальному идентификатору
@@ -65,12 +37,8 @@ public class StudentRepository {
      * @return Если студент с таким id существует, то вернется объект студента,
      * иначе вернется null
      */
-    public Student getStudentById(int id) {
-        return students.stream()
-                .filter(s -> s.getId() == id)
-                .findFirst()
-                .orElse(null);
-    }
+    Student getStudentById(int id);
+
 
     /**
      * Метод возвращает список студентов по имени
@@ -78,24 +46,14 @@ public class StudentRepository {
      * @param studentName Имя студента
      * @return Список студентов с заданным именем
      */
-    public List<Student> getStudentsByName(String studentName) {
-        List<Student> tempStudents = students.stream()
-                .filter(s -> s.getName().equalsIgnoreCase(studentName))
-                .toList();
-        if (tempStudents.size() == 0) {
-            return null;
-        }
-        return tempStudents;
-    }
+    List<Student> getStudentsByName(String studentName);
 
     /**
      * Метод возвращает список всех студентов
      *
      * @return Копия списка студентов
      */
-    public List<Student> getAllStudents() {
-        return List.copyOf(students);
-    }
+    List<Student> getAllStudents();
 
     /**
      * Метод возвращает список студентов из определенной группы
@@ -103,28 +61,5 @@ public class StudentRepository {
      * @param groupName Название группы, по которой будут искаться студенты
      * @return Все студенты из заданной группы
      */
-    public List<Student> getStudentsByGroup(String groupName) {
-        List<Student> tempStudents = students.stream()
-                .filter(s -> s.getGroupName().equalsIgnoreCase(groupName))
-                .toList();
-        if (tempStudents.size() == 0) {
-            return null;
-        }
-        return tempStudents;
-    }
-
-    /**
-     * Первоначальная инициализация списка студентов
-     */
-    private void initialization() {
-        students.add(new Student("Илья", "A1"));
-        students.add(new Student("Нияз", "A1"));
-        students.add(new Student("Евгений", "B2"));
-        students.add(new Student("Алексей", "A1"));
-        students.add(new Student("Кристина", "C1"));
-        students.add(new Student("Максим", "C1"));
-        students.add(new Student("Артем", "A1"));
-        students.add(new Student("Илья", "C3"));
-        students.add(new Student("Евгений", "C3"));
-    }
+    List<Student> getStudentsByGroup(String groupName);
 }
