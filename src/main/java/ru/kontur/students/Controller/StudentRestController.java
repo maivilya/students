@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.kontur.students.Entity.Student;
 import ru.kontur.students.Service.StudentService;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -29,18 +28,6 @@ public class StudentRestController {
                     .status(HttpStatus.CREATED)
                     .body(studentService.deleteStudentById(id));
         } catch (NoSuchElementException exception) {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable int id, @RequestBody Student student) {
-        log.info("Поступил запрос на обновление данных о студенте с id={}", id);
-        try {
-            return ResponseEntity
-                    .status(HttpStatus.CREATED)
-                    .body(studentService.updateStudent(id, student));
-        } catch (NullPointerException exception) {
             return ResponseEntity.notFound().build();
         }
     }
@@ -77,6 +64,7 @@ public class StudentRestController {
                 .body(studentService.getAllStudents());
     }
 
+
     @GetMapping("search")
     public ResponseEntity<List<Student>> getStudentsByName(@RequestParam String studentName) {
         log.info("Поступил запрос на выдачу информации обо всех студентах c именем={}", studentName);
@@ -95,7 +83,7 @@ public class StudentRestController {
         try {
             return ResponseEntity
                     .status(HttpStatus.CREATED)
-                    .body(studentService.getStudentsByGroup(groupName));
+                    .body(studentService.getStudentsByGroupName(groupName));
         } catch (NoSuchElementException exception) {
             return ResponseEntity.notFound().build();
         }
