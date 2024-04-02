@@ -1,9 +1,11 @@
 package ru.kontur.students.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.kontur.students.Entity.Student;
 import ru.kontur.students.Repository.StudentRepository;
+
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -11,37 +13,22 @@ import java.util.NoSuchElementException;
 @Slf4j
 public class StudentService {
 
-    private final StudentRepository studentRepository;
-
-    public StudentService() {
-        studentRepository = new StudentRepository();
-    }
+    @Autowired
+    private StudentRepository studentRepository;
 
     public Student deleteStudentById(int id) {
         Student oldStudent = studentRepository.deleteStudentById(id);
         if (oldStudent == null) {
             log.info("Не удалось удалить студента с id={}", id);
-            throw new NoSuchElementException("Не удалось удалить студента с id=" +  id);
+            throw new NoSuchElementException("Не удалось удалить студента с id=" + id);
         }
         log.info("Студент с id={} успешно удален", id);
         return oldStudent;
     }
 
-    public Student updateStudent(int id, Student student) {
-        if (studentRepository.updateStudent(id, student) == null) {
-            log.info("Не удалось обновить данные о студента с id={}, student={}", id, student);
-            return null;
-        }
-        log.info("Данные о студента c id={} успешно обновлены. Новые данные={}", id, student);
-        return student;
-    }
-
     public boolean addStudent(Student student) {
-        if (!studentRepository.addStudent(student)) {
-            log.info("Не удалось добавить студента={}", student);
-            return false;
-        }
-        log.info("Студент={} добавлен в репозиторий",student);
+        studentRepository.save(student);
+        log.info("Студент={} добавлен в репозиторий", student);
         return true;
     }
 
@@ -51,7 +38,7 @@ public class StudentService {
             throw new NoSuchElementException("Не удалось найти студента с id=" + id);
         }
         log.info("Информация о студенте с id={} успешно выдана", id);
-        return studentRepository.getStudentById(id);
+        return studentRepository.findById(id).get();
     }
 
     public List<Student> getStudentsByName(String studentName) {
@@ -65,15 +52,15 @@ public class StudentService {
 
     public List<Student> getAllStudents() {
         log.info("Информация о студентах успешно выдана");
-        return studentRepository.getAllStudents();
+        return studentRepository.findAll();
     }
 
-    public List<Student> getStudentsByGroup(String groupName) {
-        if (studentRepository.getStudentsByGroup(groupName) == null) {
+    public List<Student> getStudentsByGroupName(String groupName) {
+        if (studentRepository.getStudentsByGroupName(groupName) == null) {
             log.info("Не удалось найти ни одного студента из группы={}", groupName);
             throw new NoSuchElementException("Не удалось найти ни одного студента из группы=" + groupName);
         }
         log.info("Информация о студентах из группы={} успешно выдана", groupName);
-        return studentRepository.getStudentsByGroup(groupName);
+        return studentRepository.getStudentsByGroupName(groupName);
     }
 }
