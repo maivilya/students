@@ -1,8 +1,8 @@
 package ru.kontur.students.service;
 
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.event.spi.RefreshEventListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import ru.kontur.students.entity.Student;
@@ -66,7 +66,7 @@ public class StudentService {
         return studentRepository.getStudentsByGroupName(groupName);
     }
 
-    @EventListener(RefreshEventListener.class)
+    @EventListener(ContextRefreshedEvent.class)
     private void initializeStartData() {
         Student usualStudent = new Student("Обычный студент", "7Б");
         usualStudent.setRole("usualStudent");
