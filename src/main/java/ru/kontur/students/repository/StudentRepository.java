@@ -1,8 +1,8 @@
-package ru.kontur.students.Repository;
+package ru.kontur.students.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.kontur.students.Entity.Student;
+import ru.kontur.students.entity.Student;
 import java.util.List;
 
 @Repository

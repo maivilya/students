@@ -1,12 +1,12 @@
-package ru.kontur.students.Service;
+package ru.kontur.students.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.event.spi.RefreshEventListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
-import ru.kontur.students.Entity.Student;
-import ru.kontur.students.Repository.StudentRepository;
+import ru.kontur.students.entity.Student;
+import ru.kontur.students.repository.StudentRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;

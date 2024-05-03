@@ -1,11 +1,11 @@
-package ru.kontur.students.Controller;
+package ru.kontur.students.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.kontur.students.Entity.Student;
-import ru.kontur.students.Service.StudentService;
+import ru.kontur.students.entity.Student;
+import ru.kontur.students.service.StudentService;
 import java.util.List;
 import java.util.NoSuchElementException;
 

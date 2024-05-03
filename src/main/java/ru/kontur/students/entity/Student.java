@@ -1,4 +1,4 @@
-package ru.kontur.students.Entity;
+package ru.kontur.students.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
