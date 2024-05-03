@@ -68,14 +68,14 @@ public class StudentService {
 
     @EventListener(ContextRefreshedEvent.class)
     private void initializeStartData() {
-        Student usualStudent = new Student("Обычный студент", "7Б");
-        usualStudent.setRole("usualStudent");
-        usualStudent.setPassword("usualStudentPassword");
+        Student usualStudent = new Student("usual", "7Б");
+        usualStudent.setRole("usual");
+        usualStudent.setPassword("usual");
         studentRepository.save(usualStudent);
 
-        Student admin = new Student("Студент-администратор", "9Д");
+        Student admin = new Student("admin", "9Д");
         admin.setRole("admin");
-        admin.setPassword("adminPassword");
+        admin.setPassword("admin");
         studentRepository.save(admin);
     }
 }
