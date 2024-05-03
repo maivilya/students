@@ -20,7 +20,7 @@ public class StudentRestController {
         this.studentService = studentService;
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Student> deleteStudentById(@PathVariable int id) {
         log.info("Поступил запрос на удаление студента с id={}", id);
         try {
@@ -32,7 +32,7 @@ public class StudentRestController {
         }
     }
 
-    @PostMapping("/add")
+    @PostMapping()
     public ResponseEntity<Boolean> addStudent(@RequestBody Student student) {
         log.info("Поступил запрос на добавление студента={}", student);
         if (student != null) {
