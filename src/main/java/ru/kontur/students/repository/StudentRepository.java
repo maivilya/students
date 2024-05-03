@@ -24,6 +24,15 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
      */
     Student getStudentById(int id);
 
+    /**
+     * Метод возвращает студента по уникальному идентификатору
+     *
+     * @param studentName Имя студента
+     * @return Если студент с таким именем существует, то вернется объект студента,
+     * иначе вернется null
+     */
+    Student getStudentByName(String studentName);
+
 
     /**
      * Метод возвращает список студентов по имени
