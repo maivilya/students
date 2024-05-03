@@ -1,7 +1,9 @@
 package ru.kontur.students.Service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.event.spi.RefreshEventListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import ru.kontur.students.Entity.Student;
 import ru.kontur.students.Repository.StudentRepository;
@@ -62,5 +64,18 @@ public class StudentService {
         }
         log.info("Информация о студентах из группы={} успешно выдана", groupName);
         return studentRepository.getStudentsByGroupName(groupName);
+    }
+
+    @EventListener(RefreshEventListener.class)
+    private void initializeStartData() {
+        Student usualStudent = new Student("Обычный студент", "7Б");
+        usualStudent.setRole("usualStudent");
+        usualStudent.setPassword("usualStudentPassword");
+        studentRepository.save(usualStudent);
+
+        Student admin = new Student("Студент-администратор", "9Д");
+        admin.setRole("admin");
+        admin.setPassword("adminPassword");
+        studentRepository.save(admin);
     }
 }
