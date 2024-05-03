@@ -12,11 +12,17 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "Имя")
+    @Column()
     private String name;
 
-    @Column(name = "Группа")
+    @Column()
     private String groupName;
+
+    @Column()
+    private String password;
+
+    @Column()
+    private String role;
 
     public Student() {
 
