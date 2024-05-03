@@ -88,4 +88,20 @@ public class StudentRestController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    //region test mapping
+    @GetMapping("user")
+    public String user() {
+        return "user";
+    }
+
+    @GetMapping("admin")
+    public String admin() {
+        return "admin";
+    }
+
+    @GetMapping("any")
+    public String any() {
+        return "any";
+    }
 }
